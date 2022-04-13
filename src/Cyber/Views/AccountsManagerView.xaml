@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Cyber.Views.AccountsManagerView"
+             Title="Accounts Manager"
+             BackgroundColor="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"-->
+        <CollectionView x:Name="cvAccounts" SelectionMode="Single" ItemsLayout="VerticalList" ItemsSource="{Binding Accounts}" SelectionChanged="cvAccounts_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5,10" HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" />
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Address}" LineBreakMode="MiddleTruncation" TextColor="Gray" />
+                        </VerticalStackLayout>
+                        <ImageButton Grid.Column="2" HorizontalOptions="Center" WidthRequest="32" HeightRequest="32" BorderColor="Transparent"
+                                     Source="edit.png" Aspect="AspectFill" Clicked="btnEdit_Clicked"></ImageButton>
+                        <!--<ImageButton Grid.Column="3" Source="edit.svg"></ImageButton> Command="{Binding CmdEdit}"-->
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <VerticalStackLayout Grid.Column="1" Padding="10">
+            <SearchBar HorizontalOptions="FillAndExpand"></SearchBar>
+            <ImageButton HorizontalOptions="Center" Margin="0,50,0,0"
+                         WidthRequest="32" HeightRequest="32" BorderColor="Transparent"
+                         Source="add.png" Aspect="Fill" Clicked="btnAddAccount_Clicked"></ImageButton>
+            <Button HorizontalOptions="Center" Margin="0,50,0,0"
+                    Text="Add" Clicked="btnAddAccount_Clicked"></Button>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

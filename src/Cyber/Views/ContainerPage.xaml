@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:uiModels="clr-namespace:Cyber.UI.Models"
+            xmlns:vm="Cyber.ViewModels"
+            xmlns:localViews="clr-namespace:Cyber.Views"
+            x:Class="Cyber.Views.ContainerPage" FlyoutLayoutBehavior="Popover">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Cyber" Padding="0,10,0,0" IconImageSource="menu_hamburger.svg">
+            <ListView x:Name="flyoutMenu">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type uiModels:FlyoutPageItem}">
+                        <uiModels:FlyoutPageItem Title="Home"
+                                      IconSource="home.png"
+                                      TargetType="{x:Type localViews:MainPage}" />
+                        <uiModels:FlyoutPageItem Title="Accounts"
+                                      IconSource="wallet.png"
+                                      TargetType="{x:Type localViews:AccountsManagerView}" />
+                        <uiModels:FlyoutPageItem Title="Play"
+                                      IconSource="dice.png"
+                                      TargetType="{x:Type localViews:ImageView}" />
+                        <!--<local:FlyoutPageItem Title="TodoList"
+                                      IconSource="todo.png"
+                                      TargetType="{x:Type local:TodoListPage}" />
+                        <local:FlyoutPageItem Title="Reminders"
+                                      IconSource="reminders.png"
+                                      TargetType="{x:Type local:ReminderPage}" />-->
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding IconSource}" WidthRequest="30" HeightRequest="30" />
+                                <Label Grid.Column="1" Text="{Binding Title}" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    
+    <FlyoutPage.Detail>
+        <NavigationPage x:Name="navigator">
+        </NavigationPage>
+    </FlyoutPage.Detail>
+    
+</FlyoutPage>

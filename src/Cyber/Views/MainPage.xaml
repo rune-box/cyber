@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:vm="Cyber.ViewModels"
+            xmlns:localViews="clr-namespace:Cyber.Views"
+            x:Class="Cyber.Views.MainPage" x:Name="tabMain" Title="{Binding Title}">
+    <!--<ContentPage Title="Dashboard">
+        <FlexLayout>
+            <Button Text="Get testing data"></Button>
+        </FlexLayout>
+    </ContentPage>-->
+    <ContentPage Title="NFT" IconImageSource="layer_1.png">
+        <FlexLayout>
+            <Button Text="Get from OpenSea (need request API Key)" Margin="10" HeightRequest="50" Command="{Binding CmdLoadFromOpenSea}"></Button>
+            <Button Text="Load Testing Data: OpenSea" Margin="10" HeightRequest="50" Command="{Binding CmdTestOpenSea}"></Button>
+            <Button Text="Play" x:Name="btnPlay" Margin="10" HeightRequest="50" Clicked="btnPlay_Clicked"></Button>
+        </FlexLayout>
+    </ContentPage>
+    <localViews:DownloadView x:Name="pageDownload"></localViews:DownloadView>
+</TabbedPage>

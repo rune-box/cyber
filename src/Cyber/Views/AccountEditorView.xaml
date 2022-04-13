@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cyber.Views.AccountEditorView"
+             Title="Account Editor"
+             BackgroundColor="White">
+    <StackLayout Padding="20">
+        <Entry Margin="10" Placeholder="Wallet Address" Text="{Binding Address, Mode=TwoWay}"></Entry>
+        <HorizontalStackLayout Margin="10">
+            <CheckBox x:Name="checkIsEvm" IsChecked="{Binding IsEvm, Mode=TwoWay}"></CheckBox>
+            <Label Text="It's EVM Compatible" VerticalOptions="Center"></Label>
+        </HorizontalStackLayout>
+        <Entry Margin="10" Placeholder="EVM compatible Address" Text="{Binding EvmAddress, Mode=TwoWay}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry" Value="True"
+                             Binding="{Binding Source={x:Reference checkIsEvm}, Path=IsChecked}">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+        <Picker Margin="10">
+        </Picker>
+        <Entry Margin="10" Placeholder="Name" Text="{Binding Name, Mode=TwoWay}"></Entry>
+        <Editor Margin="10" Placeholder="Remark" HeightRequest="300" Text="{Binding Remark, Mode=TwoWay}"></Editor>
+        <ImageButton Margin="10" Source="save.png" WidthRequest="32" HeightRequest="32" BorderColor="Transparent"
+                VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill"
+                Command="{Binding CmdSaveAccount}" />
+    </StackLayout>
+</ContentPage>

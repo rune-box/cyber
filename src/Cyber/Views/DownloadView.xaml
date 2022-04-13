@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cyber.Views.DownloadView"
+             Title="Download"
+             IconImageSource="download.svg">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"-->
+        <CollectionView x:Name="cvDownload" SelectionMode="None" ItemsLayout="VerticalList" ItemsSource="{Binding Items}" IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}" TextColor="LightGray" FontSize="Header" FontAttributes="Bold" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5,10" HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" />
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding FileName}" LineBreakMode="MiddleTruncation" TextColor="Gray" />
+                            <!--<Label Text="{Binding Address}" LineBreakMode="MiddleTruncation" TextColor="Gray" />-->
+                        </VerticalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <VerticalStackLayout Grid.Column="1" Padding="10">
+            <Button HorizontalOptions="Center" Margin="0,50,0,0"
+                    Text="Start" Command="{Binding CmdStartDownloadTask}"></Button>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
